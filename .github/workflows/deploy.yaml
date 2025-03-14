@@ -7,7 +7,7 @@ on:
 
 env:
   AWS_REGION: eu-west-2
-  ECR_REPO_SERVICE1: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-west-2.amazonaws.com/app
+  ECR_REPO_APP: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-west-2.amazonaws.com/app
 permissions:
   id-token: write
   contents: read
@@ -39,11 +39,11 @@ jobs:
       - name: Generate Unique Image Tag
         run: echo "IMAGE_TAG=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
 
-      - name: Build and Push Docker Image for Service 1
+      - name: Build and Push Docker Image for app
         run: |
-          cd app
+          cd app/
           docker build -t app:$IMAGE_TAG .
-          docker tag app:$IMAGE_TAG $ECR_REPO_SERVICE1:$IMAGE_TAG
+          docker tag app:$IMAGE_TAG $ECR_REPO_APP:$IMAGE_TAG
           docker push $ECR_REPO_APP:$IMAGE_TAG
 
 

@@ -1,7 +1,6 @@
 on:
   push:
-    paths-ignore:
-      - 'terraform/**'
+  
     branches:
       - main
 

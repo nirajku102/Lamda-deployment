@@ -59,7 +59,16 @@ once the infra gets provisioned you can select the $default for the api gateway 
 
 *************************************************************
 
+**GITHUB FLOW**
+
+
+![alt text](<github flow.PNG>)
+
 **OUTPUT**
+
+you can get the invoke url by following the below:
+
+AWS LOGIN > API GATEWAY > SELECT STAGE AS $DEFAULT > COPY THE INVOKE URL > ACCESS IT IN THE BROWSER
 
 ![alt text](output.PNG)
 

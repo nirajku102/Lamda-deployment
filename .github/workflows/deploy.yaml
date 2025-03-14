@@ -47,11 +47,11 @@ jobs:
           docker push $ECR_REPO_APP:$IMAGE_TAG
 
 
-      # - name: Running Terraform Apply with dev.tfvars and Image URIs
-      #   run: |
-      #     cd terraform
-      #     terraform init
-      #     terraform apply -auto-approve \
-      #       -var-file=dev.tfvars \
-      #       -var="service1_image=$ECR_REPO_SERVICE1:$IMAGE_TAG" \
-      #       -var="service2_image=$ECR_REPO_SERVICE2:$IMAGE_TAG"
+      - name: Running Terraform Apply with dev.tfvars and Image URIs
+        run: |
+          cd terraform
+          terraform init
+          terraform apply -auto-approve \
+            -var-file=dev.tfvars \
+            -var="service1_image=$ECR_REPO_SERVICE1:$IMAGE_TAG" \
+            -var="service2_image=$ECR_REPO_SERVICE2:$IMAGE_TAG"

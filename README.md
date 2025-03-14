@@ -3,8 +3,7 @@ This repo is used to create Lambda Function with API Gateway and VPC - Terraform
 
 **ARCHITECTURE**
 
-![alt text](<lamda function architecture.jpg>)
-
+![alt text](<lamda function architecture-1.jpg>)
 
 TECH STACKS
 

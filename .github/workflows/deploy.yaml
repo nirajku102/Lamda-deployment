@@ -51,6 +51,6 @@ jobs:
         run: |
           cd terraform
           terraform init
-          terraform destroy -auto-approve \
+          terraform apply -auto-approve \
             -var-file=dev.tfvars \
             -var="image_uri=$ECR_REPO_app:$IMAGE_TAG"

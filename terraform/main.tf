@@ -1,21 +1,22 @@
+
 provider "aws" {
   region = "eu-west-2"
 }
 
 module "vpc" {
-  source = "./vpc"
+  source = "./modules/vpc"
   vpc_cidr = var.vpc_cidr
   public_subnets_cidr = var.public_subnets_cidr
   private_subnets_cidr = var.private_subnets_cidr
   availability_zones = var.availability_zones
 }
 
-resource "aws_ecr_repository" "lamda_repo" {
+resource "aws_ecr_repository" "lambda_repo" {
   name = "hello-world-lambda"
 }
 
 resource "aws_iam_role" "lambda_exec" {
-  name = "app_lambda_exec_role"
+  name = "hello_world_lambda_exec_role"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -36,12 +37,15 @@ resource "aws_iam_role_policy_attachment" "lambda_basic_execution" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
-resource "aws_lambda_function" "app" {
-  function_name = "hello-world-app"
+resource "aws_iam_role_policy_attachment" "lambda_vpc_access" {
+  role       = aws_iam_role.lambda_exec.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+}
+
+resource "aws_lambda_function" "hello_world" {
+  function_name = "hello-world"
   package_type  = "Image"
-  # NOTE: After building and pushing your Docker image to ECR,
-  # update the tag below to match the pushed image's URI (including the tag)
-  image_uri     = "${aws_ecr_repository.lambda_repo.repository_url}"
+  image_uri     = var.image_uri
   role          = aws_iam_role.lambda_exec.arn
 
   vpc_config {

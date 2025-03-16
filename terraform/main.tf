@@ -31,7 +31,7 @@ resource "aws_iam_role" "github_actions_role" {
         }
         Condition = {
           StringLike = {
-            "token.actions.githubusercontent.com:sub" : "repo:https://github.com/nirajku102/UC04-Lamda-deployment:ref:refs/heads/testing-OIDC"
+            "token.actions.githubusercontent.com:sub" : "repo:nirajku102/UC04-Lamda-deployment:ref:refs/heads/testing-OIDC"
           }
         }
       }
@@ -51,6 +51,8 @@ resource "aws_iam_role_policy_attachment" "github_actions_terraform" {
   role       = aws_iam_role.github_actions_role.name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess" # Adjust this to least privilege
 }
+
+
 
 module "vpc" {
   source = "./modules/vpc"

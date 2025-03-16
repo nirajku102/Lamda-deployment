@@ -67,6 +67,8 @@ AWS LOGIN > API GATEWAY > SELECT STAGE AS $DEFAULT > COPY THE INVOKE URL > ACCES
 
 ![alt text](output.PNG)
 
+<!-- Adding OIDC -->
+
 
 
 

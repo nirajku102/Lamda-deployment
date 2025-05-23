@@ -5,8 +5,8 @@ on:
       - main
 
 env:
-  AWS_REGION: eu-west-2
-  ECR_REPO_APP: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-west-2.amazonaws.com/app
+  AWS_REGION: us-east-1
+  ECR_REPO_APP: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/app
 
 permissions:
   id-token: write
